@@ -11,7 +11,7 @@ ARG DEPENDENCY=target/dependency
 #COPY ${DEPENDENCY}/META-INF /app/META-INF
 #COPY ${DEPENDENCY}/BOOT-INF/classes /app
 #COPY ${DEPENDENCY}/org /app/org
-
+#test run pipeline
 EXPOSE 8080
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-cp","app:app/lib/*", "com/amazon/aws/SpringBootSessionApplication"]
