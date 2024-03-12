@@ -1,6 +1,6 @@
 FROM node:20-alpine3.18
 USER root
-#RUN apk --no-cache add redis
+RUN apk --no-cache add redis
 
 RUN mkdir -p /home/node/app/node_modules && chown -R root:root /home/node/app
 
@@ -19,5 +19,5 @@ EXPOSE 8080
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-#CMD ["entrypoint.sh"]
-CMD [ "node", "server.js" ]
+CMD ["entrypoint.sh"]
+#CMD [ "node", "server.js" ]
