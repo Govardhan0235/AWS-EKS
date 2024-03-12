@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: java-ms
-  namespace: default
-data:
-  host: "tessolve-redis-xmpzgc.serverless.use1.cache.amazonaws.com"
-  port: "6379"

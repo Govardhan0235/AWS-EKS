@@ -1,17 +1,22 @@
-FROM openjdk:8-jre-alpine
+FROM node:20-alpine3.18
+USER root
+RUN apk --no-cache add redis
 
-MAINTAINER Tom Cheung <cheungtom@hotmail.com>, Bastian Klein<basklein@amazon.com>
-VOLUME /tmp
-VOLUME /target
+RUN mkdir -p /home/node/app/node_modules && chown -R root:root /home/node/app
 
-RUN addgroup -S demo-app && adduser -S demo-app -G demo-app
-USER demo-app:demo-app
-ARG DEPENDENCY=target/dependency
-#COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
-#COPY ${DEPENDENCY}/META-INF /app/META-INF
-#COPY ${DEPENDENCY}/BOOT-INF/classes /app
-#COPY ${DEPENDENCY}/org /app/org
-#test run pipeline
+WORKDIR /home/node/app
+
+COPY package*.json ./
+
+#USER node
+
+RUN npm install
+
+COPY --chown=root:root . .
+
 EXPOSE 8080
 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-cp","app:app/lib/*", "com/amazon/aws/SpringBootSessionApplication"]
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+CMD ["entrypoint.sh"]
