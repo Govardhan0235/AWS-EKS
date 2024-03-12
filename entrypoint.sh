@@ -1,4 +1,4 @@
 #!/bin/sh
 set -e
-redis-server -d yes
+redis-server --daemonize yes
 exec node server.js
