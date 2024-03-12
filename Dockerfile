@@ -1,6 +1,6 @@
 FROM node:20-alpine3.18
 USER root
-RUN apt-get install redis-server
+RUN apk install redis-server
 #RUN apk --no-cache add redis
 RUN redis-server --version
 #RUN redis-server --daemonize yes
