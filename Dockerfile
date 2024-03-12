@@ -20,5 +20,5 @@ EXPOSE 8080
 COPY entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-CMD ["entrypoint.sh"]
-#CMD [ "node", "server.js" ]
+#CMD ["entrypoint.sh"]
+CMD [ "node", "server.js" ]
